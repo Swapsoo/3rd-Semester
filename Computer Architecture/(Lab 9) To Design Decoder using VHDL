@@ -1,0 +1,50 @@
+VHDL Program for 2:4 decoder:
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+entity decoder is
+Port ( en : in STD_LOGIC;
+s : in STD_LOGIC_VECTOR (1 downto 0);
+z : out STD_LOGIC_VECTOR (3 downto 0));
+end decoder;
+architecture arch of decoder is
+signal p,q : STD_Logic;
+begin
+p <= not s(1);
+q <= not s(0);
+z(0) <= p and q;
+z(1) <= p and s(0);
+z(2) <= q and s(1);
+z(3) <= s(0) and s(1);
+end arch;
+
+VHDLProgram for 3:8 decoder:
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+entity dec1 is
+    Port (
+        s : in STD_LOGIC_VECTOR( 2 downto 0);
+        y : out STD_LOGIC_VECTOR(7 downto 0)
+    );
+end dec1;
+architecture Behavioral of dec1 is
+begin
+    process(s)
+    begin
+        case s is
+            when "000" => y <= "00000001";
+            when "001" => y <= "00000010";
+            when "010" => y <= "00000100";
+            when "011" => y <= "00001000";
+            when "100" => y <= "00010000";
+            when "101" => y <= "00100000";
+            when "110" => y <= "01000000";
+            when "111" => y <= "10000000";
+            when others => y <= "00000000";
+        end case;
+    end process;
+end Behavioral;
+

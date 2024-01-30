@@ -1,0 +1,33 @@
+VHDL code for half adder:
+
+library ieee ;
+use ieee.std_logic_1164.all ;
+entity half_adder is
+port ( a, b : in std_logic ;
+s, c : out std_logic ) ; 
+end half_adder ;
+architecture dataflow_half of half_adder is 
+begin
+s <= a xor b;
+c <= a and b; 
+end dataflow_half;
+
+VHDL code for full adder:
+
+library ieee;
+use ieee.std_logic_1164.all; 
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+entity fa1 is
+Port ( a,b,ci : in std_logic; 
+s,co : out std_logic
+); 
+end fa1;
+architecture Behavioral of fa1 is 
+begin
+process (a,b,ci)
+begin
+s<=a xor b xor ci;
+co<=(a and b)or (b and ci)or (ci and a);
+end process;
+end Behavioral;
